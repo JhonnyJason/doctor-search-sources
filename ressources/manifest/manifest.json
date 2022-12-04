@@ -1,6 +1,6 @@
 {
-    "name": "New Website",
-    "short_name": "N",
+    "name": "Ärztesuche",
+    "short_name": "Ärzte",
     "icons": [
         {
             "src": "/android-chrome-192x192.png",
