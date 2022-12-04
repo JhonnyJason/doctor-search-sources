@@ -1,23 +1,5 @@
-configmodule = {name: "configmodule", uimodule: false}
-############################################################
-#region printLogFunctions
-log = (arg) ->
-    if allModules.debugmodule.modulesToDebug["configmodule"]?  then console.log "[configmodule]: " + arg
-    return
-ostr = (obj) -> JSON.stringify(obj, null, 4)
-olog = (obj) -> log "\n" + ostr(obj)
-print = (arg) -> console.log(arg)
-#endregion
+# export requestSharesURL = "https://extern.bilder-befunde.at/caasprod/api/v1/shares" #extern production
+# export requestSharesURL = "https://bilder-befunde.at/service/api/v1/shares" #production
+export requestSharesURL = "https://extern.bilder-befunde.at/caasdemo/api/v1/admin/shares" #extern demo
 
-########################################################
-configmodule.initialize = ->
-    log "configmodule.initialize"
-    return    
-
-########################################################
-#region exposedProperties
-configmodule.prop = true
-
-#endregion
-
-export default configmodule
+export dataLoadPageSize = 1000
