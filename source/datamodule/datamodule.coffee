@@ -56,8 +56,7 @@ retrieveCurrentData = (searchData) ->
             page++
         
         return allData.flat()
-    catch err
-
+    catch err then throw err
 
 
 ############################################################

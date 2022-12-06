@@ -39,6 +39,8 @@ button-size = 22px
     max-width 100% !important
     min-width calc(100% - 10px)
 
+table.gridjs-table
+    width 100%
     
 th.gridjs-th
     background-color #F9FAFB
@@ -99,12 +101,15 @@ td.gridjs-td
 
 .click-button
 .click-button:hover
-    overflow: hidden
     background-color: cd-turquoise
     color white
     padding 10px
     text-transform: uppercase    
-
+.click-button:disabled
+    color: #888
+    background-color: #eee
+    opacity 0.5
+    cursor auto
 
 // #main-block-top
 //     background-color grey

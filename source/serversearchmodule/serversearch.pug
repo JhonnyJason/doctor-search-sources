@@ -1,5 +1,6 @@
 //- serversearch structure
 #serversearch
+    h1 Datensatz Abfrage
     #serversearch-inputs
         input#serversearch-vpn-input(type="text" placeholder="VPN")
         input#serversearch-firstname-input(type="text" placeholder="Vorname")
@@ -10,4 +11,5 @@
         label#serversearch-exact-label Exakte Suche
         input#serversearch-exact-input(type="checkbox")
     #serversearch-submit
-        button#serversearch-button.click-button Go!
+        span#serversearch-error-feedback
+        button#serversearch-button.click-button Datensatz Abfragen

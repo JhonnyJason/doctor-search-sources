@@ -5,7 +5,7 @@ import { createLogFunctions } from "thingy-debug"
 #endregion
 
 ############################################################
-import { triggerSearch } from "./datamodule.js"
+import * as data from "./datamodule.js"
 import { refresh } from "./overviewtablemodule.js"
 
 ############################################################
@@ -26,6 +26,17 @@ searchButtonClicked = (evnt) ->
     searchData = { vpn, first_name, last_name, city, zip, isExact }
     olog searchData
 
-    triggerSearch(searchData)
+    data.triggerSearch(searchData)
     refresh()
+
+    serversearchErrorFeedback.innerHTML = ""
+    serversearchButton.disabled = true
+    
+    try await data.getCurrentData()
+    catch err 
+        errorFeedback = "Fehler bei der Datenabfrage: #{err.message}"
+        log errorFeedback
+        serversearchErrorFeedback.innerText = errorFeedback
+    finally serversearchButton.disabled = false
+    
     return

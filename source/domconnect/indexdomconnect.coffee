@@ -10,6 +10,7 @@ indexdomconnect.initialize = () ->
     global.serversearchLocationInput = document.getElementById("serversearch-location-input")
     global.serversearchPostcodeInput = document.getElementById("serversearch-postcode-input")
     global.serversearchExactInput = document.getElementById("serversearch-exact-input")
+    global.serversearchErrorFeedback = document.getElementById("serversearch-error-feedback")
     global.serversearchButton = document.getElementById("serversearch-button")
     return
     
