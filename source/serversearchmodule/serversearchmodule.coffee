@@ -12,9 +12,17 @@ import { refresh } from "./overviewtablemodule.js"
 export initialize = ->
     log "initialize"
     serversearchButton.addEventListener("click", searchButtonClicked)
+    document.addEventListener("keydown", documentKeyDowned)
     return
 
 ############################################################
+documentKeyDowned = (evnt) ->
+    log "documentKeyDowned"
+    keyCode = evnt.keyCode || evnt.which
+    if (keyCode? and keyCode == 13) or (evnt.key == "Enter")
+        searchButtonClicked(evnt)
+    return
+
 searchButtonClicked = (evnt) ->
     log "searchButtonClicked"
     vpn = serversearchVpnInput.value
