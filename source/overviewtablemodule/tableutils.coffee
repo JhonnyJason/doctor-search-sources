@@ -40,31 +40,33 @@ deDE = {
 ############################################################
 #region cell formatter functions
 vpnFormatter = (content, row) ->
-    return "#{content[0].id}"
-    # return content
+    if content.length? and content.length > 0 then return "#{content[0].id}"
+    return " "
 
 daMeFormatter = (content, row) ->
     if content.dame_recps? and content.dame_recps.length > 0
         return content.dame_recps[0].hv_uid
-    return ""
+    return " "
 
 firstnameFormatter = (content, row) ->
-    return content
+    if content then return content
+    return " "
 
 nameFormatter = (content, row) ->
-    return content
+    if content then return content
+    return " "
 
 streetFormatter = (content, row) ->
-    return "#{content[0].street}"
-    # return content
+    if content.length? and content.length > 0 then return "#{content[0].street}"
+    return " "
 
 locationFormatter = (content, row) ->
-    return "#{content[0].city}"
-    # return content
+    if content.length? and content.length > 0 then return "#{content[0].city}"
+    return " "
 
 postcodeFormatter = (content, row) ->
-    return "#{content[0].zip}"
-    #return content
+    if content.length? and content.length > 0 then return "#{content[0].zip}"
+    return " "
 
 kurContractFormatter = (content, row) ->
     if content[0].has_curative_contract then return "Ja"
