@@ -36,10 +36,11 @@ deDE = {
 
 ## datamodel default entry
 # | VPN | DaMe | Vorname | Name | Straße | Ort | Postleitzahl | Kurativer Vertrag |
+localCompareOptions = {sensitivity: "base", numeric: true}
 stringCompare = (el1, el2) ->
     el1String = "#{el1}"
     el2String = "#{el2}"
-    return el1String.localeCompare(el2String)
+    return el1String.localeCompare(el2String, "de", localCompareOptions)
 
 ############################################################
 #region cell formatter functions
