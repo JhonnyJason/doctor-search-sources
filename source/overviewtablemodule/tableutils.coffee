@@ -40,33 +40,37 @@ deDE = {
 ############################################################
 #region cell formatter functions
 vpnFormatter = (content, row) ->
-    if content.length? and content.length > 0 then return "#{content[0].id}"
-    return " "
+    if content? and content.length? and content.length > 0 and content[0].id? 
+        return "#{content[0].id}"
+    return "-"
 
 daMeFormatter = (content, row) ->
-    if content.dame_recps? and content.dame_recps.length > 0
-        return content.dame_recps[0].hv_uid
-    return " "
+    if content? and content.length? and content.length > 0 and content[0].hv_uid?
+        return content[0].hv_uid
+    return "-"
 
 firstnameFormatter = (content, row) ->
     if content then return content
-    return " "
+    return "-"
 
 nameFormatter = (content, row) ->
     if content then return content
-    return " "
+    return "-"
 
 streetFormatter = (content, row) ->
-    if content.length? and content.length > 0 then return "#{content[0].street}"
-    return " "
+    if content? and content.length? and content.length > 0 and content[0].street? 
+        return "#{content[0].street}"
+    return "-"
 
 locationFormatter = (content, row) ->
-    if content.length? and content.length > 0 then return "#{content[0].city}"
-    return " "
+    if content? and content.length? and content.length > 0 and content[0].city? 
+        return "#{content[0].city}"
+    return "-"
 
 postcodeFormatter = (content, row) ->
-    if content.length? and content.length > 0 then return "#{content[0].zip}"
-    return " "
+    if content? and content.length? and content.length > 0 and content[0].zip?
+        return "#{content[0].zip}"
+    return "-"
 
 kurContractFormatter = (content, row) ->
     if content[0].has_curative_contract then return "Ja"
@@ -124,7 +128,7 @@ export getColumnsObject = ->
     ############################################################
     daMeHeadObj = {
         name: "DaMe",
-        id: "id",
+        id: "dame_recps",
         formatter: daMeFormatter
     }
 
