@@ -36,6 +36,10 @@ deDE = {
 
 ## datamodel default entry
 # | VPN | DaMe | Vorname | Name | Straße | Ort | Postleitzahl | Kurativer Vertrag |
+stringCompare = (el1, el2) ->
+    el1String = "#{el1}"
+    el2String = "#{el2}"
+    return el1String.localeCompare(el2String)
 
 ############################################################
 #region cell formatter functions
@@ -123,6 +127,8 @@ export getColumnsObject = ->
         name: "VPN",
         id: "contracts",
         formatter: vpnFormatter
+        sort: {compare: stringCompare}
+            
     }
 
     ############################################################
@@ -130,6 +136,7 @@ export getColumnsObject = ->
         name: "DaMe",
         id: "dame_recps",
         formatter: daMeFormatter
+        sort: {compare: stringCompare}
     }
 
     ############################################################
@@ -137,6 +144,7 @@ export getColumnsObject = ->
         name: "Vorname",
         id: "first_name",
         formatter: firstnameFormatter
+        sort: {compare: stringCompare}
     }
 
     ############################################################
@@ -144,6 +152,7 @@ export getColumnsObject = ->
         name: "Name",
         id: "name",
         formatter: nameFormatter
+        sort: {compare: stringCompare}
     }
 
     ############################################################
@@ -151,6 +160,7 @@ export getColumnsObject = ->
         name: "Straße",
         id: "addresses",
         formatter: streetFormatter
+        sort: {compare: stringCompare}
     }
 
     ############################################################
@@ -158,6 +168,7 @@ export getColumnsObject = ->
         name: "Ort",
         id: "addresses",
         formatter: locationFormatter
+        sort: {compare: stringCompare}
     }
 
     ############################################################
@@ -165,6 +176,7 @@ export getColumnsObject = ->
         name: "PLZ",
         id: "addresses",
         formatter: postcodeFormatter
+        sort: {compare: stringCompare}
     }
 
     ############################################################
@@ -172,6 +184,7 @@ export getColumnsObject = ->
         name: "Kur.Vertr.",
         id: "addresses",
         formatter: kurContractFormatter
+        sort: {compare: stringCompare}
     }
 
 
