@@ -35,7 +35,8 @@ postRequest = (url, data) ->
 
 
 retrieveCurrentData = (searchData) ->
-    { vpn,first_name, last_name, city, zip, isExact } = searchData
+    # { vpn,first_name, last_name, city, zip, isExact } = searchData
+    { vpn,first_name, last_name, city, zip } = searchData
 
     try
         allData = []
@@ -51,7 +52,8 @@ retrieveCurrentData = (searchData) ->
             allData.push(rawData.providers)
             receivedCount += rawData.count
             
-            if rawData.count <  page_size then break
+            # if rawData.count <  page_size then break
+            break
             
             page++
         

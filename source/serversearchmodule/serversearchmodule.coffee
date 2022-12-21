@@ -30,8 +30,11 @@ searchButtonClicked = (evnt) ->
     last_name = serversearchSurenameInput.value
     city = serversearchLocationInput.value
     zip = serversearchPostcodeInput.value
-    isExact = serversearchExactInput.checked
-    searchData = { vpn, first_name, last_name, city, zip, isExact }
+    # isExact = serversearchExactInput.checked
+    # searchData = { vpn, first_name, last_name, city, zip, isExact }
+    # olog searchData
+
+    searchData = { vpn, first_name, last_name, city, zip }
     olog searchData
 
     data.triggerSearch(searchData)

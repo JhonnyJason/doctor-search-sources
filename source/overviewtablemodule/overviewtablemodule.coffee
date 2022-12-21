@@ -32,7 +32,8 @@ renderTable = (dataPromise) ->
     columns = utl.getColumnsObject()
     data = -> dataPromise
     language = utl.getLanguageObject()
-    search = true
+    # search = true
+    search = false
 
     pagination = { limit: 50 }
     sort = { multiColumn: false }
@@ -61,12 +62,13 @@ updateTableData = (dataPromise) ->
     data = -> dataPromise
     language = utl.getLanguageObject()
 
-    searchInput = document.getElementsByClassName("gridjs-search-input")[0]
-    if searchInput? then searchValue = searchInput.value
-    log searchValue
-    search =
-        enabled: true
-        keyword: searchValue
+    # searchInput = document.getElementsByClassName("gridjs-search-input")[0]
+    # if searchInput? then searchValue = searchInput.value
+    # log searchValue
+    # search =
+    #     enabled: true
+    #     keyword: searchValue
+    search = false
 
     tableObj.updateConfig({columns, data, language, search})
     tableObj.forceRender()
@@ -80,15 +82,16 @@ updateTableHeight = (height) ->
     height = height+"px"
 
     #preserve input value if we have
-    searchInput = document.getElementsByClassName("gridjs-search-input")[0]
-    if searchInput? 
-        searchValue = searchInput.value
-        log searchValue
-        search =
-            enabled: true
-            keyword: searchValue
-    else search = false
-    
+    # searchInput = document.getElementsByClassName("gridjs-search-input")[0]
+    # if searchInput? 
+    #     searchValue = searchInput.value
+    #     log searchValue
+    #     search =
+    #         enabled: true
+    #         keyword: searchValue
+    # else search = false
+    search = false
+        
     tableObj.updateConfig({height, search})
     tableObj.forceRender()
     return

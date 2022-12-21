@@ -44,7 +44,9 @@ vpnFormatter = (content, row) ->
     # return content
 
 daMeFormatter = (content, row) ->
-    return content
+    if content.dame_recps? and content.dame_recps.length > 0
+        return content.dame_recps[0].hv_uid
+    return ""
 
 firstnameFormatter = (content, row) ->
     return content
@@ -75,8 +77,13 @@ kurContractFormatter = (content, row) ->
 export getTableHeight = ->
     # log "getTableHeight"
 
-    gridJSHead = document.getElementsByClassName("gridjs-head")[0]
+    # gridJSHead = document.getElementsByClassName("gridjs-thead")[0]
+    if gridJSHead? then headHeight = gridJSHead.offsetHeight
+    else headHeight = 0
+    
     gridJSFooter = document.getElementsByClassName("gridjs-footer")[0]
+    if gridJSFooter? then footerHeight = gridJSFooter.offsetHeight
+    else footerHeight = 0
 
     fullHeight = window.innerHeight
     fullWidth = window.innerWidth
@@ -84,15 +91,7 @@ export getTableHeight = ->
     outerPadding = 5
     serversearchHeight = serversearch.offsetHeight
 
-    if gridJSHead? and gridJSFooter?
-        footerHeight = gridJSFooter.offsetHeight
-        searchHeight = gridJSHead.offsetHeight + 10
-    else
-        searchHeight = 58
-        if fullWidth < 750 then footerHeight = 82
-        else footerHeight = 55
-
-    nonTableOffset = serversearchHeight + footerHeight + searchHeight + outerPadding
+    nonTableOffset = serversearchHeight + footerHeight + headHeight + outerPadding
     
     tableHeight = fullHeight - nonTableOffset
     # olog {tableHeight, fullHeight, nonTableOffset, approvalHeight}
