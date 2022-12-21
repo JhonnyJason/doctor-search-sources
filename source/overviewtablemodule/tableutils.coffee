@@ -23,7 +23,7 @@ deDE = {
         navigate: (page, pages) -> "Seite #{page} von #{pages}"
         page: (page) -> "Seite #{page}"
         showing: '|'
-        of: 'der'
+        of: 'von'
         to: '-'
         results: 'Daten'
     }
