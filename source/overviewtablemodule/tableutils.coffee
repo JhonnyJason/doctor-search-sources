@@ -42,35 +42,35 @@ deDE = {
 vpnFormatter = (content, row) ->
     if content? and content.length? and content.length > 0 and content[0].id? 
         return "#{content[0].id}"
-    return "-"
+    return ""
 
 daMeFormatter = (content, row) ->
     if content? and content.length? and content.length > 0 and content[0].hv_uid?
         return content[0].hv_uid
-    return "-"
+    return ""
 
 firstnameFormatter = (content, row) ->
     if content then return content
-    return "-"
+    return ""
 
 nameFormatter = (content, row) ->
     if content then return content
-    return "-"
+    return ""
 
 streetFormatter = (content, row) ->
     if content? and content.length? and content.length > 0 and content[0].street? 
         return "#{content[0].street}"
-    return "-"
+    return ""
 
 locationFormatter = (content, row) ->
     if content? and content.length? and content.length > 0 and content[0].city? 
         return "#{content[0].city}"
-    return "-"
+    return ""
 
 postcodeFormatter = (content, row) ->
     if content? and content.length? and content.length > 0 and content[0].zip?
         return "#{content[0].zip}"
-    return "-"
+    return ""
 
 kurContractFormatter = (content, row) ->
     if content[0].has_curative_contract then return "Ja"
@@ -85,7 +85,9 @@ localCompareOptions = {sensitivity: "base", numeric: true}
 ############################################################
 stringCompare = (el1, el2) ->
     el1String = "#{el1}"
+    if !el1String then el1String = "zzzzzzzzzzzzzzzz"
     el2String = "#{el2}"
+    if !el2String then el2String = "zzzzzzzzzzzzzzzz"
     return el1String.localeCompare(el2String, "de", localCompareOptions)
 
 ############################################################
