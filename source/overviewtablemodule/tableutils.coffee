@@ -22,7 +22,7 @@ deDE = {
         next: 'Nächste'
         navigate: (page, pages) -> "Seite #{page} von #{pages}"
         page: (page) -> "Seite #{page}"
-        showing: '|'
+        showing: ' '
         of: 'von'
         to: '-'
         results: 'Daten'
