@@ -22,10 +22,10 @@ deDE = {
         next: 'Nächste'
         navigate: (page, pages) -> "Seite #{page} von #{pages}"
         page: (page) -> "Seite #{page}"
-        showing: 'Anzeigen'
+        showing: ''
         of: 'von'
-        to: 'zu'
-        results: 'Ergebnisse'
+        to: '-'
+        results: 'Daten'
     }
     loading: 'Wird geladen...'
     noRecordsFound: 'Keine übereinstimmenden Aufzeichnungen gefunden'
