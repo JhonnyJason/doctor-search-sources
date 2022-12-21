@@ -36,11 +36,6 @@ deDE = {
 
 ## datamodel default entry
 # | VPN | DaMe | Vorname | Name | Straße | Ort | Postleitzahl | Kurativer Vertrag |
-localCompareOptions = {sensitivity: "base", numeric: true}
-stringCompare = (el1, el2) ->
-    el1String = "#{el1}"
-    el2String = "#{el2}"
-    return el1String.localeCompare(el2String, "de", localCompareOptions)
 
 ############################################################
 #region cell formatter functions
@@ -81,6 +76,58 @@ kurContractFormatter = (content, row) ->
     if content[0].has_curative_contract then return "Ja"
     else return "Nein"
 
+#endregion
+
+############################################################
+#region compare functions
+localCompareOptions = {sensitivity: "base", numeric: true}
+
+############################################################
+stringCompare = (el1, el2) ->
+    el1String = "#{el1}"
+    el2String = "#{el2}"
+    return el1String.localeCompare(el2String, "de", localCompareOptions)
+
+############################################################
+vpnCompare = (el1, el2) ->
+    el1String = vpnFormatter(el1)
+    el2String = vpnFormatter(el2)
+    return stringCompare(el1String, el2String)    
+
+daMeCompare = (el1, el2) ->
+    el1String = daMeFormatter(el1)
+    el2String = daMeFormatter(el2)
+    return stringCompare(el1String, el2String)    
+
+firstnameCompare = (el1, el2) ->
+    el1String = firstnameFormatter(el1)
+    el2String = firstnameFormatter(el2)
+    return stringCompare(el1String, el2String)    
+
+nameCompare = (el1, el2) ->
+    el1String = nameFormatter(el1)
+    el2String = nameFormatter(el2)
+    return stringCompare(el1String, el2String)    
+
+streetCompare = (el1, el2) ->
+    el1String = streetFormatter(el1)
+    el2String = streetFormatter(el2)
+    return stringCompare(el1String, el2String)    
+
+locationCompare = (el1, el2) ->
+    el1String = locationFormatter(el1)
+    el2String = locationFormatter(el2)
+    return stringCompare(el1String, el2String)    
+
+postcodeCompare = (el1, el2) ->
+    el1String = postcodeFormatter(el1)
+    el2String = postcodeFormatter(el2)
+    return stringCompare(el1String, el2String)    
+
+kurContractCompare = (el1, el2) ->
+    el1String = kurContractFormatter(el1)
+    el2String = kurContractFormatter(el2)
+    return stringCompare(el1String, el2String)    
 #endregion
 
 ############################################################
@@ -128,7 +175,7 @@ export getColumnsObject = ->
         name: "VPN",
         id: "contracts",
         formatter: vpnFormatter
-        sort: {compare: stringCompare}
+        sort: {compare: vpnCompare}
             
     }
 
@@ -137,7 +184,7 @@ export getColumnsObject = ->
         name: "DaMe",
         id: "dame_recps",
         formatter: daMeFormatter
-        sort: {compare: stringCompare}
+        sort: {compare: daMeCompare}
     }
 
     ############################################################
@@ -145,7 +192,7 @@ export getColumnsObject = ->
         name: "Vorname",
         id: "first_name",
         formatter: firstnameFormatter
-        sort: {compare: stringCompare}
+        sort: {compare: firstnameCompare}
     }
 
     ############################################################
@@ -153,7 +200,7 @@ export getColumnsObject = ->
         name: "Name",
         id: "name",
         formatter: nameFormatter
-        sort: {compare: stringCompare}
+        sort: {compare: nameCompare}
     }
 
     ############################################################
@@ -161,7 +208,7 @@ export getColumnsObject = ->
         name: "Straße",
         id: "addresses",
         formatter: streetFormatter
-        sort: {compare: stringCompare}
+        sort: {compare: streetCompare}
     }
 
     ############################################################
@@ -169,7 +216,7 @@ export getColumnsObject = ->
         name: "Ort",
         id: "addresses",
         formatter: locationFormatter
-        sort: {compare: stringCompare}
+        sort: {compare: locationCompare}
     }
 
     ############################################################
@@ -177,7 +224,7 @@ export getColumnsObject = ->
         name: "PLZ",
         id: "addresses",
         formatter: postcodeFormatter
-        sort: {compare: stringCompare}
+        sort: {compare: postcodeCompare}
     }
 
     ############################################################
@@ -185,7 +232,7 @@ export getColumnsObject = ->
         name: "Kur.Vertr.",
         id: "addresses",
         formatter: kurContractFormatter
-        sort: {compare: stringCompare}
+        sort: {compare: kurContractCompare}
     }
 
 
