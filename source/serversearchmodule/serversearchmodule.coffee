@@ -11,6 +11,7 @@ import { refresh } from "./overviewtablemodule.js"
 ############################################################
 export initialize = ->
     log "initialize"
+    resetButton.addEventListener("click", resetButtonClicked)
     serversearchButton.addEventListener("click", searchButtonClicked)
     document.addEventListener("keydown", documentKeyDowned)
     return
@@ -22,6 +23,19 @@ documentKeyDowned = (evnt) ->
     if (keyCode? and keyCode == 13) or (evnt.key == "Enter")
         searchButtonClicked(evnt)
     return
+
+resetButtonClicked = (evnt) ->
+    serversearchVpnInput.value = ""
+    serversearchFirstnameInput.value = ""
+    serversearchSurenameInput.value = ""
+    serversearchLocationInput.value = ""
+    serversearchPostcodeInput.value = ""
+
+    serversearchErrorFeedback.innerHTML = ""
+    data.resetData()
+    refresh()
+    return
+
 
 searchButtonClicked = (evnt) ->
     log "searchButtonClicked"
@@ -44,7 +58,7 @@ searchButtonClicked = (evnt) ->
     serversearchButton.disabled = true
     
     try await data.getCurrentData()
-    catch err 
+    catch err
         errorFeedback = "Fehler bei der Datenabfrage: #{err.message}"
         log errorFeedback
         serversearchErrorFeedback.innerText = errorFeedback

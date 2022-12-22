@@ -67,3 +67,7 @@ export getCurrentData = -> currentData
 export triggerSearch = (searchData) ->
     currentData = retrieveCurrentData(searchData)
     return
+
+export resetData = ->
+    currentData =  []
+    return
