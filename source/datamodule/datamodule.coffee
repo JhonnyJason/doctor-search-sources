@@ -6,6 +6,7 @@ import { createLogFunctions } from "thingy-debug"
 
 ############################################################
 import { dataLoadPageSize, requestURL } from "./configmodule.js"
+import *  as S from "./statemodule.js"
 
 ############################################################
 currentData = []
@@ -38,6 +39,9 @@ retrieveCurrentData = (searchData) ->
     # { vpn,first_name, last_name, city, zip, isExact } = searchData
     { vpn,first_name, last_name, city, zip } = searchData
 
+    URL = S.load("requestProvidersURL")
+    if typeof URL != "string" then URL = requestURL
+
     try
         allData = []
         page_size = dataLoadPageSize
@@ -47,7 +51,7 @@ retrieveCurrentData = (searchData) ->
         
         loop
             requestData = { vpn,first_name, last_name, city, zip, page, page_size }
-            rawData = await postRequest(requestURL, requestData)
+            rawData = await postRequest(URL, requestData)
 
             allData.push(rawData.providers)
             receivedCount += rawData.count

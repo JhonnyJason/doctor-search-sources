@@ -150,8 +150,8 @@ export getTableHeight = ->
     
     outerPadding = 5
     serversearchHeight = serversearch.offsetHeight
-
-    nonTableOffset = serversearchHeight + footerHeight + headHeight + outerPadding
+    headerHeight = header.offsetHeight
+    nonTableOffset = headerHeight + serversearchHeight + footerHeight + headHeight + outerPadding
     
     tableHeight = fullHeight - nonTableOffset
     # olog {tableHeight, fullHeight, nonTableOffset, approvalHeight}

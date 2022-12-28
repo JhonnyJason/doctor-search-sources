@@ -12,6 +12,11 @@ indexdomconnect.initialize = () ->
     global.serversearchErrorFeedback = document.getElementById("serversearch-error-feedback")
     global.resetButton = document.getElementById("reset-button")
     global.serversearchButton = document.getElementById("serversearch-button")
+    global.settingsoffButton = document.getElementById("settingsoff-button")
+    global.settingsbuttonBackend = document.getElementById("settingsbutton-backend")
+    global.header = document.getElementById("header")
+    global.settingsButton = document.getElementById("settings-button")
+    global.settingspageBackend = document.getElementById("settingspage-backend")
     return
     
 module.exports = indexdomconnect
