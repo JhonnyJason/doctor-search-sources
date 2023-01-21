@@ -32,6 +32,7 @@ export updateHeader = ->
     log "updateHeader"
     try 
         stats = await getStats()
+        olog stats
         log titleText
         log stats.releaseDate
         releaseDate = new Date(stats.releaseDate)
@@ -39,4 +40,4 @@ export updateHeader = ->
         year = releaseDate.getFullYear()
         titleTextReleaseDate = month+"/"+year
         headerTitle.textContent = titleTextBase + " " + titleTextReleaseDate
-    catch err then log "Could not request stats for header!"
+    catch err then log "Could not request stats for header!\n" + err.message

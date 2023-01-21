@@ -39,7 +39,7 @@ postRequest = (url, data) ->
         return response.json()
     catch err then throw new Error("Network Error: "+err.message)
 
-getRequest = (url) ->
+getData = (url) ->
     options =
         method: 'GET'
         mode: 'cors'
@@ -86,7 +86,7 @@ retrieveCurrentData = (searchData) ->
 export getStats = ->
     URL = S.load("requestStatsURL")
     if typeof URL != "string" then URL = requestStatsURL
-    stats = await getRequest(URL)
+    stats = await getData(URL)
     return stats
 
 
