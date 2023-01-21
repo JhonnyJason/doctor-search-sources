@@ -41,7 +41,7 @@ postRequest = (url, data) ->
 
 getRequest = (url) ->
     options =
-        method: 'POST'
+        method: 'GET'
         mode: 'cors'
         credentials: 'include'
     
