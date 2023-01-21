@@ -5,6 +5,7 @@ import { createLogFunctions } from "thingy-debug"
 #endregion
 
 ############################################################
+import * as S from "./statemodule.js"
 import { getStats } from "./datamodule.js"
 
 ############################################################
@@ -41,6 +42,6 @@ export updateHeader = ->
         year = releaseDate.getFullYear()
         titleTextReleaseDate = month+"/"+year
         S.save("titleTextReleaseDate", titleTextReleaseDate)
-        
+
         headerTitle.textContent = titleTextBase + " " + titleTextReleaseDate
     catch err then log "Could not request stats for header!\n" + err.message
