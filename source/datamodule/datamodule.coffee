@@ -5,7 +5,12 @@ import { createLogFunctions } from "thingy-debug"
 #endregion
 
 ############################################################
-import { dataLoadPageSize, requestURL } from "./configmodule.js"
+import { 
+    dataLoadPageSize, 
+    requestProvidersURL, 
+    requestStatsURL 
+} from "./configmodule.js"
+############################################################
 import *  as S from "./statemodule.js"
 
 ############################################################
@@ -28,6 +33,18 @@ postRequest = (url, data) ->
         headers:
             'Content-Type': 'application/json'
 
+    try
+        response = await fetch(url, options)
+        if !response.ok then throw new Error("Response not ok - status: #{response.status}!")
+        return response.json()
+    catch err then throw new Error("Network Error: "+err.message)
+
+getRequest = (url) ->
+    options =
+        method: 'POST'
+        mode: 'cors'
+        credentials: 'include'
+    
     try
         response = await fetch(url, options)
         if !response.ok then throw new Error("Response not ok - status: #{response.status}!")
@@ -66,6 +83,13 @@ retrieveCurrentData = (searchData) ->
 
 
 ############################################################
+export getStats = ->
+    URL = S.load("requestStatsURL")
+    if typeof URL != "string" then URL = requestStatsURL
+    stats = await getRequest(URL)
+    return stats
+
+
 export getCurrentData = -> currentData
 
 export triggerSearch = (searchData) ->

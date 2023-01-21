@@ -19,11 +19,20 @@ export initialize = ->
     backendServerChoice
 
     requestProvidersURL = S.load("requestProvidersURL")
+    requestStatsURL = S.load("requestStatsURL")
 
     if typeof requestProvidersURL != "string"
         currentChoice = 0
     else
         backendURL = requestProvidersURL.replace("/providers", "")
+
+        # synchronize stats Request URL if it is not a fit
+        if typeof requestStatsURL == "string"
+            statsBackendURL = requestStatsURL.replace("/stats", "")
+            if backendURL != statsBackendURL then S.save("requestStatsURL", backendURL+"/stats")
+        else S.save("requestStatsURL", backendURL+"/stats")
+        
+        
         currentChoice = backendOptions.indexOf(backendURL)
         if currentChoice < 0 then currentChoice = 0
 
@@ -50,10 +59,12 @@ selectBackendOption = (index) ->
 
     backendURL = backendOptions[index]
     requestProvidersURL = backendURL + "/providers"
+    requestStatsURL = backendURL + "/stats"
     backendServerChoice.value = index
-    S.save("requestProvidersURL", requestProvidersURL)
-    return
 
+    S.save("requestProvidersURL", requestProvidersURL)
+    S.save("requestStatsURL", requestStatsURL)
+    return
 
 ############################################################
 backendServerChoiceChanged = ->
