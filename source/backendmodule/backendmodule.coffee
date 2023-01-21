@@ -6,6 +6,7 @@ import { createLogFunctions } from "thingy-debug"
 
 ############################################################
 import * as S from "./statemodule.js"
+import { updateHeader } from "./headermodule.js"
 import { backendOptions } from "./configmodule.js"
 
 ############################################################
@@ -64,6 +65,8 @@ selectBackendOption = (index) ->
 
     S.save("requestProvidersURL", requestProvidersURL)
     S.save("requestStatsURL", requestStatsURL)
+
+    updateHeader()
     return
 
 ############################################################

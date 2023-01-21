@@ -11,22 +11,15 @@ import { getStats } from "./datamodule.js"
 headerTitle = document.getElementById("header-title")
 
 ############################################################
-titleText = ""
+titleTextBase = ""
+titleTextReleaseDate = ""
 
 ############################################################
 export initialize = ->
     log "initialize"
     settingsButton.addEventListener("click", settingsButtonClicked)
-    titleText = headerTitle.textContent
-    try 
-        stats = await getStats()
-        log titleText
-        log stats.releaseDate
-        releaseDate = new Date(stats.releaseDate)
-        month = releaseDate.getMonth + 1
-        year = releaseDate.getFullYear()
-        titleText += month+"/"+year
-    catch err then log "Could not request stats for header!"
+    titleTextBase = headerTitle.textContent
+    await updateHeader()
     return
 
 settingsButtonClicked = ->
@@ -34,3 +27,16 @@ settingsButtonClicked = ->
     settingsButton.classList.add("on")
     document.body.classList.add("settings")
     return
+
+export updateHeader = ->
+    log "updateHeader"
+    try 
+        stats = await getStats()
+        log titleText
+        log stats.releaseDate
+        releaseDate = new Date(stats.releaseDate)
+        month = releaseDate.getMonth + 1
+        year = releaseDate.getFullYear()
+        titleTextReleaseDate = month+"/"+year
+        headerTitle.textContent = titleTextBase + " " + titleTextReleaseDate
+    catch err then log "Could not request stats for header!"
