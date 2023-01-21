@@ -21,6 +21,8 @@ export initialize = ->
     settingsButton.addEventListener("click", settingsButtonClicked)
     titleTextBase = headerTitle.textContent
     titleTextReleaseDate = S.load("titleTextReleaseDate")
+    headerTitle.textContent = titleTextBase + " " + titleTextReleaseDate
+
     await updateHeader()
     return
 
