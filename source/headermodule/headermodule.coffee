@@ -36,7 +36,7 @@ export updateHeader = ->
         log titleTextBase
         log stats.releaseDate
         releaseDate = new Date(stats.releaseDate)
-        month = releaseDate.getMonth + 1
+        month = releaseDate.getMonth() + 1
         year = releaseDate.getFullYear()
         titleTextReleaseDate = month+"/"+year
         headerTitle.textContent = titleTextBase + " " + titleTextReleaseDate
