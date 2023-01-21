@@ -19,6 +19,7 @@ export initialize = ->
     log "initialize"
     settingsButton.addEventListener("click", settingsButtonClicked)
     titleTextBase = headerTitle.textContent
+    titleTextReleaseDate = S.load("titleTextReleaseDate")
     await updateHeader()
     return
 
@@ -39,5 +40,7 @@ export updateHeader = ->
         month = releaseDate.getMonth() + 1
         year = releaseDate.getFullYear()
         titleTextReleaseDate = month+"/"+year
+        S.save("titleTextReleaseDate", titleTextReleaseDate)
+        
         headerTitle.textContent = titleTextBase + " " + titleTextReleaseDate
     catch err then log "Could not request stats for header!\n" + err.message
