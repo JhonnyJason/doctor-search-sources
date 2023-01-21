@@ -33,7 +33,7 @@ export updateHeader = ->
     try 
         stats = await getStats()
         olog stats
-        log titleText
+        log titleTextBase
         log stats.releaseDate
         releaseDate = new Date(stats.releaseDate)
         month = releaseDate.getMonth + 1
