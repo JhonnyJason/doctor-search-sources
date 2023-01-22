@@ -37,12 +37,18 @@ renderTable = (dataPromise) ->
 
     pagination = { limit: 50 }
     sort = { multiColumn: false }
+
     fixedHeader = true
     resizable = false
-    height = "#{utl.getTableHeight()}px"
-    width = "100%"
+    autoWidth =  true
+    
+    style = 
+        table:
+            height: "#{utl.getTableHeight()}px"
+            width: "100%"
+            'white-space': "nowrap"
 
-    gridJSOptions = { columns, data, language, search, pagination, sort, fixedHeader, resizable, height, width }
+    gridJSOptions = { columns, data, language, search, pagination, sort, fixedHeader, resizable, autoWidth, style }
 
     if tableObj?
         tableObj = null
