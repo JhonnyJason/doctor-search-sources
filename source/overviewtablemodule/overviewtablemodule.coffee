@@ -40,7 +40,7 @@ renderTable = (dataPromise) ->
 
     fixedHeader = true
     resizable = false
-    # autoWidth =  true
+    autoWidth =  true
     
     # style = 
     #     table:
@@ -48,7 +48,7 @@ renderTable = (dataPromise) ->
     #         width: "100%"
     #         'white-space': "nowrap"
 
-    gridJSOptions = { columns, data, language, search, pagination, sort, fixedHeader, resizable } #, autoWidth, style }
+    gridJSOptions = { columns, data, language, search, pagination, sort, fixedHeader, resizable, autoWidth } #, autoWidth, style }
 
     if tableObj?
         tableObj = null
