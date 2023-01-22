@@ -60,7 +60,7 @@ nameFormatter = (content, row) ->
 streetFormatter = (content, row) ->
     if content? and content.length? and content.length > 0
         streets = content.map((el) -> el.street)
-        streetsHTML = "<div style='min-width: 300px;>#{streets.join("<br>")}</div>"
+        streetsHTML = "<div style='min-width: 300px;'>#{streets.join("<br>")}</div>"
         return html(streetsHTML)
     return ""
 
