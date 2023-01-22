@@ -58,18 +58,24 @@ nameFormatter = (content, row) ->
     return ""
 
 streetFormatter = (content, row) ->
-    if content? and content.length? and content.length > 0 and content[0].street? 
-        return "#{content[0].street}"
+    if content? and content.length? and content.length > 0 and content[0].street?
+        streets = content.map((el) -> el.street)
+        html = streets.join("<br>")
+        return html
     return ""
 
 locationFormatter = (content, row) ->
     if content? and content.length? and content.length > 0 and content[0].city? 
-        return "#{content[0].city}"
+        cities = content.map((el) -> el.city)
+        html = cities.join("<br>")
+        return html
     return ""
 
 postcodeFormatter = (content, row) ->
     if content? and content.length? and content.length > 0 and content[0].zip?
-        return "#{content[0].zip}"
+        zipcodes = content.map((el) -> el.zip)
+        html = zipcodes.join("<br>")
+        return html
     return ""
 
 kurContractFormatter = (content, row) ->
