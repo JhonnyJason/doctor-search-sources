@@ -97,7 +97,7 @@ updateTableHeight = (height) ->
     #         keyword: searchValue
     # else search = false
     search = false
-        
+    log "update Config + force render..."
     tableObj.updateConfig({height, search})
     tableObj.forceRender()
     return
