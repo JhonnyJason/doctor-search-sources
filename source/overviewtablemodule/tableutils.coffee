@@ -54,34 +54,36 @@ firstnameFormatter = (content, row) ->
     return ""
 
 nameFormatter = (content, row) ->
-    if content then return content
+    if content then return "<div style='max-width: 200px;'>#{content}</div>"
     return ""
 
 streetFormatter = (content, row) ->
-    if content? and content.length? and content.length > 0 and content[0].street?
+    if content? and content.length? and content.length > 0
         streets = content.map((el) -> el.street)
-        streetsHTML = streets.join("<br>")
+        streetsHTML = "<div style='min-width: 300px;>#{streets.join("<br>")}</div>"
         return html(streetsHTML)
     return ""
 
 locationFormatter = (content, row) ->
-    if content? and content.length? and content.length > 0 and content[0].city? 
+    if content? and content.length? and content.length > 0 
         cities = content.map((el) -> el.city)
         citiesHTML = cities.join("<br>")
         return html(citiesHTML)
     return ""
 
 postcodeFormatter = (content, row) ->
-    if content? and content.length? and content.length > 0 and content[0].zip?
+    if content? and content.length? and content.length > 0
         zipcodes = content.map((el) -> el.zip)
         zipHTML = zipcodes.join("<br>")
         return html(zipHTML)
     return ""
 
 kurContractFormatter = (content, row) ->
-    if content[0].has_curative_contract then return "Ja"
-    else return "Nein"
-
+    if content? and content.length? and content.length > 0
+        kurContracts = content.map((el) -> if el.has_curative_contract then "Ja" else "Nein")
+        kurContractsHTML = kurContracts.join("<br>")
+        return html(kurContractsHTML)
+    return "Nein"
 #endregion
 
 ############################################################
@@ -241,7 +243,7 @@ export getColumnsObject = ->
 
     ############################################################
     kurContractHeadObj = {
-        name: "Kur.Vertr.",
+        name: "Kur.V.",
         id: "addresses",
         autoWidth: true,
         formatter: kurContractFormatter
