@@ -60,22 +60,22 @@ nameFormatter = (content, row) ->
 streetFormatter = (content, row) ->
     if content? and content.length? and content.length > 0 and content[0].street?
         streets = content.map((el) -> el.street)
-        text = streets.join("\n")
-        return text
+        streetsHTML = streets.join("<br>")
+        return html(streetsHTML)
     return ""
 
 locationFormatter = (content, row) ->
     if content? and content.length? and content.length > 0 and content[0].city? 
         cities = content.map((el) -> el.city)
-        text = cities.join("\n")
-        return text
+        citiesHTML = cities.join("<br>")
+        return html(citiesHTML)
     return ""
 
 postcodeFormatter = (content, row) ->
     if content? and content.length? and content.length > 0 and content[0].zip?
         zipcodes = content.map((el) -> el.zip)
-        text = zipcodes.join("\n")
-        return text
+        zipHTML = zipcodes.join("<br>")
+        return html(zipHTML)
     return ""
 
 kurContractFormatter = (content, row) ->
