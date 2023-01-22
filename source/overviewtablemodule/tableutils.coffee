@@ -54,7 +54,7 @@ firstnameFormatter = (content, row) ->
     return ""
 
 nameFormatter = (content, row) ->
-    if content then return "<div style='max-width: 200px;'>#{content}</div>"
+    if content then return html("<div style='max-width: 200px;'>#{content}</div>")
     return ""
 
 streetFormatter = (content, row) ->
