@@ -90,6 +90,27 @@ kurContractFormatter = (content, row) ->
 #region compare functions
 localCompareOptions = {sensitivity: "base", numeric: true}
 
+
+############################################################
+streetCompareFormatter = (content, row) ->
+    if content? and content.length? and content.length > 0 and content[0].street? 
+        return "#{content[0].street}"
+    return ""
+
+locationCompareFormatter = (content, row) ->
+    if content? and content.length? and content.length > 0 and content[0].city? 
+        return "#{content[0].city}"
+    return ""
+
+postcodeCompareFormatter = (content, row) ->
+    if content? and content.length? and content.length > 0 and content[0].zip?
+        return "#{content[0].zip}"
+    return ""
+
+kurContractCompareFormatter = (content, row) ->
+    if content[0].has_curative_contract then return "Ja"
+    else return "Nein"
+
 ############################################################
 stringCompare = (el1, el2) ->
     el1String = "#{el1}"
@@ -120,24 +141,25 @@ nameCompare = (el1, el2) ->
     return stringCompare(el1String, el2String)    
 
 streetCompare = (el1, el2) ->
-    el1String = streetFormatter(el1)
-    el2String = streetFormatter(el2)
+    el1String = streetCompareFormatter(el1)
+    el2String = streetCompareFormatter(el2)
     return stringCompare(el1String, el2String)    
 
 locationCompare = (el1, el2) ->
-    el1String = locationFormatter(el1)
-    el2String = locationFormatter(el2)
+    el1String = locationCompareFormatter(el1)
+    el2String = locationCompareFormatter(el2)
     return stringCompare(el1String, el2String)    
 
 postcodeCompare = (el1, el2) ->
-    el1String = postcodeFormatter(el1)
-    el2String = postcodeFormatter(el2)
+    el1String = postcodeCompareFormatter(el1)
+    el2String = postcodeCompareFormatter(el2)
     return stringCompare(el1String, el2String)    
 
 kurContractCompare = (el1, el2) ->
-    el1String = kurContractFormatter(el1)
-    el2String = kurContractFormatter(el2)
+    el1String = kurContractCompareFormatter(el1)
+    el2String = kurContractCompareFormatter(el2)
     return stringCompare(el1String, el2String)    
+
 #endregion
 
 ############################################################
