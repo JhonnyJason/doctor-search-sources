@@ -2,13 +2,13 @@
 #backend
     select#backend-server-choice()
         option(value="0") Neuen Server hinzufügen
-        option(value="1") https://extern.bilder-befunde.at/radmint/api/v1
-        option(value="2") https://www.bilder-befunde.at/radmint/api/v1
-        option(value="3") https://www.bilder-befunde.at/radmint/api/v1
+        option(value="1") https://extern.bilder-befunde.at/radmint/api/v1/docvz
+        option(value="2") https://www.bilder-befunde.at/radmint/api/v1/docvz
+        option(value="3") https://www.bilder-befunde.at/radmint/api/v1/docvz
         
     input#backend-input(type="text")
     //- #backend-works-indicator.error Server unerreichbar!
     //- #backend-button-container
     //-     #backend-ok-button.click-button okay
     //-     #backend-reset-button.click-button reset
-    p#backend-explaination-text Dies ist der Server welcher für die Abfrage der Datensätze verwendet wird, welchseln Sie einfach hier anhand ihrer Umgebung.
+    p#backend-explaination-text Dies ist der Server welcher für die Abfrage der Datensätze verwendet wird, wechseln Sie einfach hier anhand ihrer Umgebung.
