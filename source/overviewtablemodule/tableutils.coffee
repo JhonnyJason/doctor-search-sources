@@ -54,13 +54,13 @@ firstnameFormatter = (content, row) ->
     return ""
 
 nameFormatter = (content, row) ->
-    if content then return html("<div style='max-width: 200px;'>#{content}</div>")
+    if content then return "#{content}"
     return ""
 
 streetFormatter = (content, row) ->
     if content? and content.length? and content.length > 0
         streets = content.map((el) -> el.street)
-        streetsHTML = "<div style='min-width: 300px;'>#{streets.join("<br>")}</div>"
+        streetsHTML = streets.join("<br>")
         return html(streetsHTML)
     return ""
 
