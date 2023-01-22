@@ -40,7 +40,7 @@ renderTable = (dataPromise) ->
 
     fixedHeader = true
     resizable = false
-    autoWidth =  true
+    autoWidth =  false
     
     # style = 
     #     table:
