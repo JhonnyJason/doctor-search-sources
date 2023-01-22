@@ -53,17 +53,19 @@ renderTable = (dataPromise) ->
     if tableObj?
         tableObj = null
         gridjsFrame.innerHTML = ""  
+        log "replace Table Object and force render"
         tableObj = new Grid(gridJSOptions)
         tableObj.render(gridjsFrame).forceRender()
         # this does not work here - it seems the Old State still remains in the GridJS singleton thus a render here does not refresh the table at all
     else
+        log "create Table Object and render"
         tableObj = new Grid(gridJSOptions)
         gridjsFrame.innerHTML = ""    
         tableObj.render(gridjsFrame)
     return
 
 updateTableData = (dataPromise) ->
-    # log "updateTableData"
+    log "updateTableData"
     columns = utl.getColumnsObject()
     data = -> dataPromise
     language = utl.getLanguageObject()
@@ -76,12 +78,14 @@ updateTableData = (dataPromise) ->
     #     keyword: searchValue
     search = false
 
+    log "update Config + force render..."
     tableObj.updateConfig({columns, data, language, search})
     tableObj.forceRender()
     return
 
 ############################################################
 updateTableHeight = (height) ->
+    log "updateTableHeight"
     if !height? then height = utl.getTableHeight()
     if currentTableHeight == height then return
     currentTableHeight = height 
