@@ -182,6 +182,7 @@ export getColumnsObject = ->
     vpnHeadObj = {
         name: "VPN",
         id: "contracts",
+        autoWidth: true,
         formatter: vpnFormatter
         sort: {compare: vpnCompare}
             
@@ -215,6 +216,7 @@ export getColumnsObject = ->
     streetHeadObj = {
         name: "Straße",
         id: "addresses",
+        style: { 'white-space': 'nowrap' },
         formatter: streetFormatter
         sort: {compare: streetCompare}
     }
@@ -223,6 +225,7 @@ export getColumnsObject = ->
     locationHeadObj = {
         name: "Ort",
         id: "addresses",
+        autoWidth: true,
         formatter: locationFormatter
         sort: {compare: locationCompare}
     }
@@ -231,6 +234,7 @@ export getColumnsObject = ->
     postcodeHeadObj = {
         name: "PLZ",
         id: "addresses",
+        autoWidth: true,
         formatter: postcodeFormatter
         sort: {compare: postcodeCompare}
     }
@@ -239,6 +243,7 @@ export getColumnsObject = ->
     kurContractHeadObj = {
         name: "Kur.Vertr.",
         id: "addresses",
+        autoWidth: true,
         formatter: kurContractFormatter
         sort: {compare: kurContractCompare}
     }
