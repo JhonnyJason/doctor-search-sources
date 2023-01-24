@@ -124,19 +124,15 @@ th[data-column-id="contracts"]
 th[data-column-id="dame_recps"]
     width 120px
 th[data-column-id="first_name"]
-    // max-width 150px !important
-    // min-width 150px !important
     width 150px
-// th[data-column-id="name"]
-//     max-width 150px !important
-//     min-width 150px !important
-//     width 150px !important
-// th:nth-child(5) // street
-//     max-width 200px !important
-//     min-width 200px !important
-//     width 200px !important
-// th:nth-child(6) // city
-//     width 150px
+
+th[data-column-id="name"]
+    min-width 170px // does not work...
+th:nth-child(5) // street
+    min-width 270px // does not work...
+th:nth-child(6) // city
+    min-width: 150px // does not work...
+
 th:nth-child(7) // zip
     width 90px
 th:nth-child(8) // kurativer Vertrag
@@ -147,6 +143,12 @@ th:nth-child(8) // kurativer Vertrag
 td[data-column-id="addresses"]
     white-space: nowrap
 
-// #main-block-top
-//     background-color grey
-//     text-align: center
+
+
+@media screen and (max-width: 1110px)
+    th[data-column-id="name"]
+        width 170px
+    th:nth-child(5) // street
+        width 270px
+    th:nth-child(6) // city
+        width: 150px
