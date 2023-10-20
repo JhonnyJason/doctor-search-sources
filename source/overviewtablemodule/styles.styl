@@ -130,23 +130,27 @@ th[data-column-id="name"]
     min-width 250px // does not work...
 th:nth-child(5) // street
     min-width 350px // does not work...
-th:nth-child(6) // city
-    min-width: 300px // does not work...
+th:nth-child(7) // city
+    min-width 300px
 
-th:nth-child(7) // zip
-    width 90px
+th:nth-child(6) // zip
+    width: 90px // does not work...
 th:nth-child(8) // kurativer Vertrag
     width 70px
+
+th:nth-child(9) // profession
+    width 90px
+
 
 td[data-column-id="addresses"]
     white-space: nowrap
 
 
 
-@media screen and (max-width: 1420px)
+@media screen and (max-width: 1510px)
     th[data-column-id="name"]
         width 250px
     th:nth-child(5) // street
         width 350px
-    th:nth-child(6) // city
+    th:nth-child(7) // city
         width: 300px

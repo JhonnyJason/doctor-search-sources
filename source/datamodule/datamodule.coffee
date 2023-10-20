@@ -17,12 +17,6 @@ import *  as S from "./statemodule.js"
 currentData = []
 
 ############################################################
-export initialize = ->
-    log "initialize"
-    #Implement or Remove :-)
-    return
-
-############################################################
 postRequest = (url, data) ->
     options =
         method: 'POST'

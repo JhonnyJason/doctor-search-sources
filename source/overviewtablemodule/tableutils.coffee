@@ -84,6 +84,12 @@ kurContractFormatter = (content, row) ->
         kurContractsHTML = kurContracts.join("<br>")
         return html(kurContractsHTML)
     return "Nein"
+
+professionFormatter = (content, row) ->
+    if content? and content.length? and content.length > 0 and content[0].profession? 
+        return "#{content[0].profession}"
+    return ""
+
 #endregion
 
 ############################################################
@@ -110,6 +116,11 @@ postcodeCompareFormatter = (content, row) ->
 kurContractCompareFormatter = (content, row) ->
     if content[0].has_curative_contract then return "Ja"
     else return "Nein"
+
+professionCompareFormatter = (content, row) ->
+    if content? and content.length? and content.length > 0 and content[0].profession?
+        return "#{content[0].profession}"
+    return ""
 
 ############################################################
 stringCompare = (el1, el2) ->
@@ -158,6 +169,11 @@ postcodeCompare = (el1, el2) ->
 kurContractCompare = (el1, el2) ->
     el1String = kurContractCompareFormatter(el1)
     el2String = kurContractCompareFormatter(el2)
+    return stringCompare(el1String, el2String)    
+
+professionCompare = (el1, el2) ->
+    el1String = professionCompareFormatter(el1)
+    el2String = professionCompareFormatter(el2)
     return stringCompare(el1String, el2String)    
 
 #endregion
@@ -246,21 +262,21 @@ export getColumnsObject = ->
     }
 
     ############################################################
-    locationHeadObj = {
-        name: "Ort",
-        id: "addresses",
-        autoWidth: true,
-        formatter: locationFormatter
-        sort: {compare: locationCompare}
-    }
-
-    ############################################################
     postcodeHeadObj = {
         name: "PLZ",
         id: "addresses",
         autoWidth: true,
         formatter: postcodeFormatter
         sort: {compare: postcodeCompare}
+    }
+
+    ############################################################
+    locationHeadObj = {
+        name: "Ort",
+        id: "addresses",
+        autoWidth: true,
+        formatter: locationFormatter
+        sort: {compare: locationCompare}
     }
 
     ############################################################
@@ -272,12 +288,20 @@ export getColumnsObject = ->
         sort: {compare: kurContractCompare}
     }
 
+    ############################################################
+    professionHeadObj = {
+        name: "Fachgebiet",
+        id: "profession",
+        autoWidth: true,
+        formatter: professionFormatter
+        sort: {compare: professionCompare}
+    }
 
     #endregion
 
     # if state == "shareToDoctor0" then return [checkboxHeadObj, indexHeadObj, screeningDateHeadObj, nameHeadObj, svnHeadObj, birthdayHeadObj, descriptionHeadObj, radiologistHeadObj, sendingDateHeadObj]
 
-    return [vpnHeadObj, daMeHeadObj, firstnameHeadObj, nameHeadObj, streetHeadObj, locationHeadObj, postcodeHeadObj, kurContractHeadObj]
+    return [vpnHeadObj, daMeHeadObj, firstnameHeadObj, nameHeadObj, streetHeadObj, postcodeHeadObj, locationHeadObj, kurContractHeadObj, professionHeadObj]
 
 export getLanguageObject = -> deDE
 
