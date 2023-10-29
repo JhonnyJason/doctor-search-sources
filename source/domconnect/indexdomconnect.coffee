@@ -9,6 +9,7 @@ indexdomconnect.initialize = () ->
     global.serversearchSurenameInput = document.getElementById("serversearch-surename-input")
     global.serversearchLocationInput = document.getElementById("serversearch-location-input")
     global.serversearchPostcodeInput = document.getElementById("serversearch-postcode-input")
+    global.serversearchExpertiseInput = document.getElementById("serversearch-expertise-input")
     global.serversearchErrorFeedback = document.getElementById("serversearch-error-feedback")
     global.resetButton = document.getElementById("reset-button")
     global.serversearchButton = document.getElementById("serversearch-button")

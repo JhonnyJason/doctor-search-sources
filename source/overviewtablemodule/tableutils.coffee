@@ -85,9 +85,14 @@ kurContractFormatter = (content, row) ->
         return html(kurContractsHTML)
     return "Nein"
 
-professionFormatter = (content, row) ->
-    if content? and content.length? and content.length > 0 and content[0].profession? 
-        return "#{content[0].profession}"
+expertiseFormatter = (content, row) ->
+    if content? and content.length? and content.length > 0 and content[0].code?
+        expertiseFrameHTML = "<div class='expertise-frame'>"
+        expertiseFrameHTML += "#{content[0].code}" 
+        if content[0].description?
+            expertiseFrameHTML += "<span class='tooltip'>#{content[0].description}</span>"
+        expertiseFrameHTML += "</div>"
+        return html(expertiseFrameHTML)
     return ""
 
 #endregion
@@ -117,9 +122,9 @@ kurContractCompareFormatter = (content, row) ->
     if content[0].has_curative_contract then return "Ja"
     else return "Nein"
 
-professionCompareFormatter = (content, row) ->
-    if content? and content.length? and content.length > 0 and content[0].profession?
-        return "#{content[0].profession}"
+expertiseCompareFormatter = (content, row) ->
+    if content? and content.length? and content.length > 0 and content[0].code?
+        return "#{content[0].code}"
     return ""
 
 ############################################################
@@ -171,9 +176,9 @@ kurContractCompare = (el1, el2) ->
     el2String = kurContractCompareFormatter(el2)
     return stringCompare(el1String, el2String)    
 
-professionCompare = (el1, el2) ->
-    el1String = professionCompareFormatter(el1)
-    el2String = professionCompareFormatter(el2)
+expertiseCompare = (el1, el2) ->
+    el1String = expertiseCompareFormatter(el1)
+    el2String = expertiseCompareFormatter(el2)
     return stringCompare(el1String, el2String)    
 
 #endregion
@@ -289,19 +294,19 @@ export getColumnsObject = ->
     }
 
     ############################################################
-    professionHeadObj = {
-        name: "Fachgebiet",
-        id: "profession",
+    expertiseHeadObj = {
+        name: "Expertise",
+        id: "expertise",
         autoWidth: true,
-        formatter: professionFormatter
-        sort: {compare: professionCompare}
+        formatter: expertiseFormatter
+        sort: {compare: expertiseCompare}
     }
 
     #endregion
 
     # if state == "shareToDoctor0" then return [checkboxHeadObj, indexHeadObj, screeningDateHeadObj, nameHeadObj, svnHeadObj, birthdayHeadObj, descriptionHeadObj, radiologistHeadObj, sendingDateHeadObj]
 
-    return [vpnHeadObj, daMeHeadObj, firstnameHeadObj, nameHeadObj, streetHeadObj, postcodeHeadObj, locationHeadObj, kurContractHeadObj, professionHeadObj]
+    return [vpnHeadObj, daMeHeadObj, firstnameHeadObj, nameHeadObj, streetHeadObj, postcodeHeadObj, locationHeadObj, kurContractHeadObj, expertiseHeadObj]
 
 export getLanguageObject = -> deDE
 

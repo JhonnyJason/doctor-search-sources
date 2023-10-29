@@ -3,6 +3,8 @@ export requestStatsURL = "https://extern.bilder-befunde.at/radmint-api/api/v1/do
 
 export requestRoute = "/providers"
 export backendOptions = [
+    "https://extern.bilder-befunde.at/cockpit-api/api/v1/docvz"
+    "https://www.bilder-befunde.at/cockpit-api/api/v1/docvz"
     "https://extern.bilder-befunde.at/radmint-api/api/v1/docvz"
     "https://www.bilder-befunde.at/radmint-api/api/v1/docvz"
     # "https://extern.bilder-befunde.at/radmint/api/v1"

@@ -41,7 +41,6 @@ export initialize = ->
     selectBackendOption(currentChoice)
     return
 
-
 ############################################################
 addAllBackendOption = ->
     log "addAllBackendOption"

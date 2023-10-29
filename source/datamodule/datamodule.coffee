@@ -47,8 +47,8 @@ getData = (url) ->
 
 
 retrieveCurrentData = (searchData) ->
-    # { vpn,first_name, last_name, city, zip, isExact } = searchData
-    { vpn,first_name, last_name, city, zip } = searchData
+    # { vpn,first_name, last_name, city, zip, expertise, isExact } = searchData
+    { vpn, first_name, last_name, city, zip, expertise } = searchData
 
     URL = S.load("requestProvidersURL")
     if typeof URL != "string" then URL = requestURL
@@ -61,7 +61,7 @@ retrieveCurrentData = (searchData) ->
         receivedCount = 0
         
         loop
-            requestData = { vpn,first_name, last_name, city, zip, page, page_size }
+            requestData = { vpn,first_name, last_name, city, zip, expertise, page, page_size }
             rawData = await postRequest(URL, requestData)
 
             allData.push(rawData.providers)

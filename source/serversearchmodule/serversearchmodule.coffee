@@ -30,7 +30,8 @@ resetButtonClicked = (evnt) ->
     serversearchSurenameInput.value = ""
     serversearchLocationInput.value = ""
     serversearchPostcodeInput.value = ""
-
+    serversearchExpertiseInput.value = ""
+    
     serversearchErrorFeedback.innerHTML = ""
     data.resetData()
     refresh()
@@ -44,11 +45,13 @@ searchButtonClicked = (evnt) ->
     last_name = serversearchSurenameInput.value
     city = serversearchLocationInput.value
     zip = serversearchPostcodeInput.value
+    expertise = serversearchExpertiseInput.value
+
     # isExact = serversearchExactInput.checked
     # searchData = { vpn, first_name, last_name, city, zip, isExact }
     # olog searchData
 
-    searchData = { vpn, first_name, last_name, city, zip }
+    searchData = { vpn, first_name, last_name, city, zip, expertise }
     olog searchData
 
     data.triggerSearch(searchData)
