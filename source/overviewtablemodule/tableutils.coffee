@@ -8,6 +8,10 @@ import { createLogFunctions } from "thingy-debug"
 import { Grid, html} from "gridjs"
 
 ############################################################
+import { expertiseMap } from "./datamodule.js"
+
+
+############################################################
 #region germanLanguage
 deDE = {
     search: {
@@ -87,7 +91,14 @@ kurContractFormatter = (content, row) ->
 
 expertisesFormatter = (content, row) ->
     if content? and content.length? and content.length > 0
-        expertisesHTML = content.join("<br>")
+        expertises = new Uint32Array(content)
+        expertises = expertises.sort()
+        
+        # Uint32Array.prototype.map does not work
+        expertises = [...expertises] # -> Array.prototype.map
+        expertises = expertises.map(createExpertiseWithTooltip)
+        
+        expertisesHTML = expertises.join("<br>")
         return html(expertisesHTML)
     # if content? and content.length? and content.length > 0 and content[0].code?
     #     expertiseFrameHTML = "<div class='expertise-frame'>"
@@ -97,6 +108,17 @@ expertisesFormatter = (content, row) ->
     #     expertiseFrameHTML += "</div>"
     #     return html(expertiseFrameHTML)
     return ""
+
+createExpertiseWithTooltip = (el) ->
+    # console.log(el)
+    expertiseFrameHTML = "<div class='expertise-frame'>"
+    expertiseFrameHTML += "#{el}" 
+    if expertiseMap[el]?
+        expertiseFrameHTML += "<span class='tooltip'>#{expertiseMap[el]}</span>"
+    expertiseFrameHTML += "</div>"
+    # console.log(expertiseFrameHTML)
+    return expertiseFrameHTML
+
 
 #endregion
 

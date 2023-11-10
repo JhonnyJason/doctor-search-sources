@@ -14,6 +14,12 @@ import {
 import *  as S from "./statemodule.js"
 
 ############################################################
+import { expertiseList } from "./expertiselist.js"
+expertiseMap = {}
+expertiseMap[el.code] = el.description for el in expertiseList
+export expertiseMap = expertiseMap
+
+############################################################
 currentData = []
 
 ############################################################
