@@ -70,7 +70,7 @@ retrieveCurrentData = (searchData) ->
             requestData = { vpn,first_name, last_name, city, zip, expertise, page, page_size }
             rawData = await postRequest(URL, requestData)
 
-            allData.push(rawData.providers)
+            allData.push(rawData.providers) if Array.isArray(rawData.providers)
             receivedCount += rawData.count
             
             # if rawData.count <  page_size then break

@@ -44,17 +44,23 @@ deDE = {
 ############################################################
 #region cell formatter functions
 vpnFormatter = (content, row) ->
-    if content? and content.length? and content.length > 0 and content[0].id? 
-        return "#{content[0].id}"
+    # if content? and content.length? and content.length > 0 and content[0].id? 
+    #     return "#{content[0].id}"
+    if content? and content.length? and content.length > 0        
+        vpnsHTML = content.join("<br>")
+        return html(vpnsHTML)
     return ""
 
 daMeFormatter = (content, row) ->
-    if content? and content.length? and content.length > 0 and content[0].hv_uid?
-        return content[0].hv_uid
+    # if content? and content.length? and content.length > 0 and content[0].hv_uid?
+    #     return content[0].hv_uid
+    if content? and content.length? and content.length > 0
+        dameIdsHTML = content.join("<br>")
+        return html(dameIdsHTML)
     return ""
 
 firstnameFormatter = (content, row) ->
-    if content then return content
+    if content then return "#{content}"
     return ""
 
 nameFormatter = (content, row) ->
@@ -84,7 +90,7 @@ postcodeFormatter = (content, row) ->
 
 kurContractFormatter = (content, row) ->
     if content? and content.length? and content.length > 0
-        kurContracts = content.map((el) -> if el.has_curative_contract then "Ja" else "Nein")
+        kurContracts = content.map((el) -> if el.curative then "Ja" else "Nein")
         kurContractsHTML = kurContracts.join("<br>")
         return html(kurContractsHTML)
     return "Nein"
@@ -126,6 +132,16 @@ createExpertiseWithTooltip = (el) ->
 #region compare functions
 localCompareOptions = {sensitivity: "base", numeric: true}
 
+############################################################
+vpnCompareFormatter = (content, row) ->
+    if content? and content.length? and content.length > 0
+        return "#{content[0]}"
+    return ""
+
+daMeCompareFormatter = (content, row) ->
+    if content? and content.length? and content.length > 0
+        return "#{content[0]}"
+    return ""
 
 ############################################################
 streetCompareFormatter = (content, row) ->
@@ -144,7 +160,7 @@ postcodeCompareFormatter = (content, row) ->
     return ""
 
 kurContractCompareFormatter = (content, row) ->
-    if content[0].has_curative_contract then return "Ja"
+    if content[0].curative then return "Ja"
     else return "Nein"
 
 expertisesCompareFormatter = (content, row) ->
@@ -162,13 +178,13 @@ stringCompare = (el1, el2) ->
 
 ############################################################
 vpnCompare = (el1, el2) ->
-    el1String = vpnFormatter(el1)
-    el2String = vpnFormatter(el2)
+    el1String = vpnCompareFormatter(el1)
+    el2String = vpnCompareFormatter(el2)
     return stringCompare(el1String, el2String)    
 
 daMeCompare = (el1, el2) ->
-    el1String = daMeFormatter(el1)
-    el2String = daMeFormatter(el2)
+    el1String = daMeCompareFormatter(el1)
+    el2String = daMeCompareFormatter(el2)
     return stringCompare(el1String, el2String)    
 
 firstnameCompare = (el1, el2) ->
@@ -251,7 +267,7 @@ export getColumnsObject = ->
     ############################################################
     vpnHeadObj = {
         name: "VPN",
-        id: "contracts",
+        id: "vpnList",
         autoWidth: true,
         formatter: vpnFormatter
         sort: {compare: vpnCompare}
@@ -260,8 +276,8 @@ export getColumnsObject = ->
 
     ############################################################
     daMeHeadObj = {
-        name: "DaMe",
-        id: "dame_recps",
+        name: "DaMe Id",
+        id: "dameIds",
         formatter: daMeFormatter
         sort: {compare: daMeCompare}
     }
