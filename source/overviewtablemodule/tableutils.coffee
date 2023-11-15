@@ -104,7 +104,8 @@ expertisesFormatter = (content, row) ->
         expertises = [...expertises] # -> Array.prototype.map
         expertises = expertises.map(createExpertiseWithTooltip)
         
-        expertisesHTML = expertises.join("<br>")
+        # expertisesHTML = expertises.join("<br>")
+        expertisesHTML = expertises.join(", ")
         return html(expertisesHTML)
     # if content? and content.length? and content.length > 0 and content[0].code?
     #     expertiseFrameHTML = "<div class='expertise-frame'>"
@@ -117,11 +118,11 @@ expertisesFormatter = (content, row) ->
 
 createExpertiseWithTooltip = (el) ->
     # console.log(el)
-    expertiseFrameHTML = "<div class='expertise-frame'>"
+    expertiseFrameHTML = "<span class='expertise-frame'>"
     expertiseFrameHTML += "#{el}" 
     if expertiseMap[el]?
         expertiseFrameHTML += "<span class='tooltip'>#{expertiseMap[el]}</span>"
-    expertiseFrameHTML += "</div>"
+    expertiseFrameHTML += "</span>"
     # console.log(expertiseFrameHTML)
     return expertiseFrameHTML
 

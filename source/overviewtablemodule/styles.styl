@@ -61,6 +61,7 @@ th.gridjs-th
 
 table.gridjs-table
     min-width 100%
+    overflow: hidden
     
 th.gridjs-th
     background-color #F9FAFB
@@ -119,9 +120,9 @@ td.gridjs-td
         width: button-size
         height button-size
 
-th[data-column-id="contracts"]
+th[data-column-id="vpnList"]
     width 90px
-th[data-column-id="dame_recps"]
+th[data-column-id="dameIds"]
     width 120px
 th[data-column-id="first_name"]
     width 150px
@@ -157,12 +158,11 @@ td[data-column-id="addresses"]
 
 //- Tooltips
 
-.expertise-frame {
+.expertise-frame
   position: relative;
   display: inline-block;
-}
 
-.expertise-frame .tooltip {
+.expertise-frame .tooltip
   visibility: hidden;
   width: 180px;
   background-color: rgba(40,60,95,0.7);
@@ -173,24 +173,24 @@ td[data-column-id="addresses"]
   position: absolute;
   z-index: 1;
   bottom: 125%;
-  left: -120px;
+  left: -140px;
   opacity: 0;
   transition: opacity 0.3s;
-}
 
-.expertise-frame .tooltip::after {
+.expertise-frame .tooltip::after
   content: "";
   position: absolute;
   top: 100%;
-  left: 73%;
+  left: 83%;
   margin-left: -5px;
   border-width: 5px;
   border-style: solid;
   border-color: rgba(40,60,95,0.7) transparent transparent transparent;
-}
 
-.expertise-frame:hover .tooltip {
+.expertise-frame:hover
+    text-decoration: underline
+
+.expertise-frame:hover .tooltip
   visibility: visible;
   opacity: 1;
   z-index: 999
-}
