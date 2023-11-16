@@ -30,9 +30,12 @@ renderTable = (dataPromise) ->
     log "renderTable"
 
     columns = utl.getColumnsObject()
-    data = -> dataPromise
+    # data = -> dataPromise
+    if Array.isArray(dataPromise) then data = dataPromise
+    else data = -> dataPromise
+
     language = utl.getLanguageObject()
-    # search = true
+
     search = false
 
     pagination = { limit: 50 }
@@ -42,67 +45,41 @@ renderTable = (dataPromise) ->
     resizable = false
     autoWidth =  false
     
-    # style = 
-    #     table:
-    #         height: "#{utl.getTableHeight()}px"
-    #         width: "100%"
-    #         'white-space': "nowrap"
+    gridJSOptions = { columns, data, language, search, pagination, sort, fixedHeader, resizable, autoWidth } 
 
-    gridJSOptions = { columns, data, language, search, pagination, sort, fixedHeader, resizable, autoWidth } #, autoWidth, style }
 
-    if tableObj?
-        tableObj = null
-        gridjsFrame.innerHTML = ""  
-        log "replace Table Object and force render"
-        tableObj = new Grid(gridJSOptions)
-        tableObj.render(gridjsFrame).forceRender()
-        # this does not work here - it seems the Old State still remains in the GridJS singleton thus a render here does not refresh the table at all
-    else
-        log "create Table Object and render"
-        tableObj = new Grid(gridJSOptions)
-        gridjsFrame.innerHTML = ""    
-        tableObj.render(gridjsFrame)
+    log "create Table Object and render"
+    tableObj = new Grid(gridJSOptions)
+    gridjsFrame.innerHTML = ""    
+    tableObj.render(gridjsFrame)
     return
 
 updateTableData = (dataPromise) ->
     log "updateTableData"
-    columns = utl.getColumnsObject()
-    data = -> dataPromise
-    language = utl.getLanguageObject()
 
-    # searchInput = document.getElementsByClassName("gridjs-search-input")[0]
-    # if searchInput? then searchValue = searchInput.value
-    # log searchValue
-    # search =
-    #     enabled: true
-    #     keyword: searchValue
-    search = false
+    if Array.isArray(dataPromise) then data = dataPromise
+    else data = -> dataPromise
 
-    log "update Config + force render..."
-    tableObj.updateConfig({columns, data, language, search})
+    tableObj.config.plugin.remove("pagination") # workaround to avoid Error
+
+    log "update Data + force render..."
+    tableObj.updateConfig({data})
     tableObj.forceRender()
     return
 
 ############################################################
 updateTableHeight = (height) ->
     log "updateTableHeight"
+    
     if !height? then height = utl.getTableHeight()
     if currentTableHeight == height then return
     currentTableHeight = height 
     height = height+"px"
 
-    #preserve input value if we have
-    # searchInput = document.getElementsByClassName("gridjs-search-input")[0]
-    # if searchInput? 
-    #     searchValue = searchInput.value
-    #     log searchValue
-    #     search =
-    #         enabled: true
-    #         keyword: searchValue
-    # else search = false
-    search = false
-    log "update Config + force render..."
-    tableObj.updateConfig({height, search})
+    tableObj.config.plugin.remove("pagination") # workaround to avoid Error
+
+    log "update Height + force render..."
+    tableObj.updateConfig({height})
     tableObj.forceRender()
     return
 

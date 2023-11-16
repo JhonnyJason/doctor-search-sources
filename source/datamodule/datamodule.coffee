@@ -77,7 +77,7 @@ retrieveCurrentData = (searchData) ->
             break
             
             page++
-        
+        # console.log(allData)
         return allData.flat()
     catch err then throw err
 
@@ -89,7 +89,6 @@ export getStats = ->
     stats = await getData(URL)
     return stats
 
-
 export getCurrentData = -> currentData
 
 export triggerSearch = (searchData) ->
@@ -97,5 +96,5 @@ export triggerSearch = (searchData) ->
     return
 
 export resetData = ->
-    currentData =  []
+    currentData = []
     return
