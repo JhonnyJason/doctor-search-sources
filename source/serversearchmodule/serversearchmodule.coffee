@@ -48,8 +48,15 @@ searchButtonClicked = (evnt) ->
     expertise_id = serversearchExpertiseInput.value
 
     # isExact = serversearchExactInput.checked
-    # searchData = { vpn, first_name, last_name, city, zip, isExact }
-    # olog searchData
+
+    # set undefined what is empty
+    if vpn.length == 0 then  vpn = undefined
+    if first_name == 0 then first_name = undefined 
+    if last_name == 0 then last_name = undefined 
+    if city == 0 then city = undefined 
+    if zip == 0 then zip = undefined 
+    if expertise_id == 0 then expertise_id = undefined 
+
 
     searchData = { vpn, first_name, last_name, city, zip, expertise_id }
     olog searchData
