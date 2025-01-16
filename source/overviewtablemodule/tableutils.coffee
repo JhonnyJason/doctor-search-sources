@@ -230,27 +230,31 @@ expertisesCompare = (el1, el2) ->
 export getTableHeight = ->
     # log "getTableHeight"
 
-    # gridJSHead = document.getElementsByClassName("gridjs-thead")[0]
-    if gridJSHead? then headHeight = gridJSHead.offsetHeight
-    else headHeight = 0
-    
+    # mainBlockContent = document.getElementById("main-block-content")
+    # tableWrapper = document.getElementsByClassName("gridjs-wrapper")[0]
     gridJSFooter = document.getElementsByClassName("gridjs-footer")[0]
-    if gridJSFooter? then footerHeight = gridJSFooter.offsetHeight
-    else footerHeight = 0
-
+    
     fullHeight = window.innerHeight
     fullWidth = window.innerWidth
     
-    outerPadding = 5
-    serversearchHeight = serversearch.offsetHeight
-    headerHeight = header.offsetHeight
-    nonTableOffset = headerHeight + serversearchHeight + footerHeight + headHeight + outerPadding
+
     
+    outerPadding = 5
+
+    nonTableOffset = 0
+    # nonTableOffset += tableWrapper.offsetTop
+    nonTableOffset += mainBlockContent.offsetTop
+    nonTableOffset += outerPadding
+    if gridJSFooter? then nonTableOffset += gridJSFooter.offsetHeight
+    else nonTableOffset += 50
+    log nonTableOffset
+
     tableHeight = fullHeight - nonTableOffset
     # olog {tableHeight, fullHeight, nonTableOffset, approvalHeight}
 
-    # return tableHeight
+    olog {tableHeight}
     return tableHeight
+
 
 ############################################################
 export getColumnsObject = ->

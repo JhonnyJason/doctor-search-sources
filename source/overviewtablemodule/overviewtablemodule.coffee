@@ -5,9 +5,7 @@ import { createLogFunctions } from "thingy-debug"
 #endregion
 
 ############################################################
-import { Grid, html} from "gridjs"
-# import dayjs from "dayjs"npm 
-# import { de } from "dayjs/locales"
+import { Grid } from "gridjs"
 
 ############################################################
 import * as S from "./statemodule.js"
@@ -19,10 +17,15 @@ tableObj = null
 currentTableHeight = 0
 
 ############################################################
+rootStyle = null
+
+############################################################
 export initialize = ->
     log "initialize"         
+    window.addEventListener("resize", updateTableHeight)
+    rootObj = document.querySelector(':root')
+    rootStyle = rootObj.style
     setDefaultState()
-    setInterval(updateTableHeight, 2000)
     return
 
 ############################################################
@@ -30,58 +33,52 @@ renderTable = (dataPromise) ->
     log "renderTable"
 
     columns = utl.getColumnsObject()
-    # data = -> dataPromise
+
     if Array.isArray(dataPromise) then data = dataPromise
     else data = -> dataPromise
 
     language = utl.getLanguageObject()
-
     search = false
-
     pagination = { limit: 50 }
-    sort = { multiColumn: false }
-
+    sort = true
     fixedHeader = true
     resizable = false
-    autoWidth =  false
-    
-    gridJSOptions = { columns, data, language, search, pagination, sort, fixedHeader, resizable, autoWidth } 
+    autoWidth = false
+
+    gridJSOptions = { columns, data, language, search, pagination, sort, fixedHeader, resizable, autoWidth }
+
+    height = "#{utl.getTableHeight()}px"
+    rootStyle.setProperty("--table-max-height", height)
+
 
 
     log "create Table Object and render"
-    tableObj = new Grid(gridJSOptions)
-    gridjsFrame.innerHTML = ""    
-    tableObj.render(gridjsFrame)
-    return
+    if tableObj?
+        tableObj = null
+        gridjsFrame.innerHTML = ""  
+        tableObj = new Grid(gridJSOptions)
+        await tableObj.render(gridjsFrame).forceRender()
+        # render alone does not work here - it seems the Old State still remains in the GridJS singleton thus a render here does not refresh the table at all
+    else
+        tableObj = new Grid(gridJSOptions)
+        gridjsFrame.innerHTML = ""    
+        await tableObj.render(gridjsFrame)
 
-updateTableData = (dataPromise) ->
-    log "updateTableData"
-
-    if Array.isArray(dataPromise) then data = dataPromise
-    else data = -> dataPromise
-
-    tableObj.config.plugin.remove("pagination") # workaround to avoid Error
-
-    log "update Data + force render..."
-    tableObj.updateConfig({data})
-    tableObj.forceRender()
     return
 
 ############################################################
 updateTableHeight = (height) ->
     log "updateTableHeight"
-    
-    if !height? then height = utl.getTableHeight()
+    olog { height }
+
+    if typeof height != "number" then height = utl.getTableHeight()
     if currentTableHeight == height then return
     currentTableHeight = height 
     height = height+"px"
-
-    tableObj.config.plugin.remove("pagination") # workaround to avoid Error
-
-    log "update Height + force render..."
-    tableObj.updateConfig({height})
-    tableObj.forceRender()
+    rootStyle.setProperty("--table-max-height", height)
+    
     return
+
 
 ############################################################
 export refresh = ->
@@ -92,13 +89,6 @@ export refresh = ->
 ############################################################
 export setDefaultState = ->
     log "setDefaultState"
-
     dataPromise = dataModule.getCurrentData()
-
-    # this is when we want to destroy the table completely
-    # renderTable(dataPromise)
-
-    # in the usual case we only want to update the table when it already exists
-    if tableObj then updateTableData(dataPromise)
-    else renderTable(dataPromise)
+    renderTable(dataPromise)
     return

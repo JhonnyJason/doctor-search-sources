@@ -2,8 +2,8 @@ indexdomconnect = {name: "indexdomconnect"}
 
 ############################################################
 indexdomconnect.initialize = () ->
+    global.mainBlockContent = document.getElementById("main-block-content")
     global.gridjsFrame = document.getElementById("gridjs-frame")
-    global.serversearch = document.getElementById("serversearch")
     global.serversearchVpnInput = document.getElementById("serversearch-vpn-input")
     global.serversearchFirstnameInput = document.getElementById("serversearch-firstname-input")
     global.serversearchSurenameInput = document.getElementById("serversearch-surename-input")
@@ -15,7 +15,6 @@ indexdomconnect.initialize = () ->
     global.serversearchButton = document.getElementById("serversearch-button")
     global.settingsoffButton = document.getElementById("settingsoff-button")
     global.settingsbuttonBackend = document.getElementById("settingsbutton-backend")
-    global.header = document.getElementById("header")
     global.settingsButton = document.getElementById("settings-button")
     global.settingspageBackend = document.getElementById("settingspage-backend")
     return
