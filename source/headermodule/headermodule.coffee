@@ -18,10 +18,10 @@ titleTextReleaseDate = ""
 ############################################################
 export initialize = ->
     log "initialize"
-    settingsButton.addEventListener("click", settingsButtonClicked)
-    titleTextBase = headerTitle.textContent
+    # settingsButton.addEventListener("click", settingsButtonClicked)
+    # titleTextBase = headerTitle.textContent
     titleTextReleaseDate = S.load("titleTextReleaseDate")
-    headerTitle.textContent = titleTextBase + " " + titleTextReleaseDate
+    headerTitle.textContent =  titleTextReleaseDate
 
     await updateHeader()
     return

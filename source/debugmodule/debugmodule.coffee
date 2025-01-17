@@ -6,9 +6,9 @@ export modulesToDebug = {
 
     # backendmodule: true
     # configmodule: true
-    datamodule: true
+    # datamodule: true
     # headermodule: true
-    overviewtablemodule: true
+    # overviewtablemodule: true
     # tableutils: true
     # serversearchmodule: true
 
