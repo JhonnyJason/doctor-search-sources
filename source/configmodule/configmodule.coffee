@@ -1,10 +1,11 @@
 export requestProvidersURL = "https://www.bilder-befunde.at/cockpit-api/api/v1/docvz/providers"
 
+# "https://extern.bilder-befunde.at/radmint-api/api/v1/docvz/providers" #extern demo
+
 export requestStatsURL = "https://www.bilder-befunde.at/cockpit-api/api/v1/docvz/stats"
 
 # "https://extern.bilder-befunde.at/radmint-api/api/v1/docvz/stats" #extern demo
 
-# "https://extern.bilder-befunde.at/radmint-api/api/v1/docvz/providers" #extern demo
 
 # export requestRoute = "/providers"
 # export backendOptions = [
