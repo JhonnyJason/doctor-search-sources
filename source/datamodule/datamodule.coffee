@@ -51,13 +51,12 @@ getData = (url) ->
         return response.json()
     catch err then throw new Error("Network Error: "+err.message)
 
-
+############################################################
 retrieveCurrentData = (searchData) ->
     # { vpn,first_name, last_name, city, zip, expertise_id, isExact } = searchData
     { vpn, first_name, last_name, city, zip, expertise_id } = searchData
 
-    URL = S.load("requestProvidersURL")
-    if typeof URL != "string" then URL = requestURL
+    URL = requestProvidersURL
 
     try
         allData = []
@@ -81,14 +80,13 @@ retrieveCurrentData = (searchData) ->
         return allData.flat()
     catch err then throw err
 
-
 ############################################################
 export getStats = ->
-    URL = S.load("requestStatsURL")
-    if typeof URL != "string" then URL = requestStatsURL
+    URL = requestStatsURL
     stats = await getData(URL)
     return stats
 
+############################################################
 export getCurrentData = -> currentData
 
 export triggerSearch = (searchData) ->
