@@ -28,6 +28,7 @@ resetButtonClicked = (evnt) ->
     serversearchVpnInput.value = ""
     serversearchFirstnameInput.value = ""
     serversearchSurenameInput.value = ""
+    serversearchStreetInput.value = ""
     serversearchLocationInput.value = ""
     serversearchPostcodeInput.value = ""
     serversearchExpertiseInput.value = ""
@@ -43,6 +44,7 @@ searchButtonClicked = (evnt) ->
     vpn = serversearchVpnInput.value
     first_name = serversearchFirstnameInput.value
     last_name = serversearchSurenameInput.value
+    street = serversearchStreetInput.value
     city = serversearchLocationInput.value
     zip = serversearchPostcodeInput.value
     expertise_id = serversearchExpertiseInput.value
@@ -53,12 +55,13 @@ searchButtonClicked = (evnt) ->
     if vpn.length == 0 then  vpn = undefined
     if first_name.length == 0 then first_name = undefined 
     if last_name.length == 0 then last_name = undefined 
+    if street.length == 0 then street = undefined
     if city.length == 0 then city = undefined 
     if zip.length == 0 then zip = undefined 
     if expertise_id.length == 0 then expertise_id = undefined 
 
 
-    searchData = { vpn, first_name, last_name, city, zip, expertise_id }
+    searchData = { vpn, first_name, last_name, street, city, zip, expertise_id }
     olog searchData
 
     data.triggerSearch(searchData)

@@ -54,7 +54,7 @@ getData = (url) ->
 ############################################################
 retrieveCurrentData = (searchData) ->
     # { vpn,first_name, last_name, city, zip, expertise_id, isExact } = searchData
-    { vpn, first_name, last_name, city, zip, expertise_id } = searchData
+    { vpn, first_name, last_name, street, city, zip, expertise_id } = searchData
 
     URL = requestProvidersURL
 
@@ -66,7 +66,7 @@ retrieveCurrentData = (searchData) ->
         receivedCount = 0
         
         loop
-            requestData = { vpn,first_name, last_name, city, zip, expertise_id, page, page_size }
+            requestData = { vpn,first_name, last_name, street, city, zip, expertise_id, page, page_size }
             rawData = await postRequest(URL, requestData)
 
             allData.push(rawData.providers) if Array.isArray(rawData.providers)

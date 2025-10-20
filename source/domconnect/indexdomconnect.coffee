@@ -7,6 +7,7 @@ indexdomconnect.initialize = () ->
     global.serversearchVpnInput = document.getElementById("serversearch-vpn-input")
     global.serversearchFirstnameInput = document.getElementById("serversearch-firstname-input")
     global.serversearchSurenameInput = document.getElementById("serversearch-surename-input")
+    global.serversearchStreetInput = document.getElementById("serversearch-street-input")
     global.serversearchPostcodeInput = document.getElementById("serversearch-postcode-input")
     global.serversearchLocationInput = document.getElementById("serversearch-location-input")
     global.serversearchExpertiseInput = document.getElementById("serversearch-expertise-input")
