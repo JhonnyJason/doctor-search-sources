@@ -2,7 +2,7 @@ export requestProvidersURL = "https://www.bilder-befunde.at/casa-api/api/v1/docv
 
 # "https://extern.bilder-befunde.at/radmint-api/api/v1/docvz/providers" #extern demo
 
-export requestStatsURL = "https://www.bilder-befunde.at/cockpit-api/api/v1/docvz/stats"
+export requestStatsURL = "https://www.bilder-befunde.at/casa-api/api/v1/docvz/stats"
 
 # "https://extern.bilder-befunde.at/radmint-api/api/v1/docvz/stats" #extern demo
 
