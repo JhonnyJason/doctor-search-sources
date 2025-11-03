@@ -1,4 +1,4 @@
-export requestProvidersURL = "https://www.bilder-befunde.at/cockpit-api/api/v1/docvz/providers"
+export requestProvidersURL = "https://www.bilder-befunde.at/casa-api/api/v1/docvz/providers"
 
 # "https://extern.bilder-befunde.at/radmint-api/api/v1/docvz/providers" #extern demo
 
