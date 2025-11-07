@@ -36,6 +36,7 @@ postRequest = (url, data) ->
     try
         response = await fetch(url, options)
         if !response.ok then throw new Error("Response not ok - status: #{response.status}!")
+        if response.status == 204 then return null
         return response.json()
     catch err then throw new Error("Network Error: "+err.message)
 

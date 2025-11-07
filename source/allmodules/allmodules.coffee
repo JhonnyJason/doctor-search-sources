@@ -4,7 +4,6 @@ import * as debugmodule from "./debugmodule.js"
 import * as headermodule from "./headermodule.js"
 import * as overviewtablemodule from "./overviewtablemodule.js"
 import * as serversearchmodule from "./serversearchmodule.js"
-import * as settingsmodule from "./settingsmodule.js"
 import * as statemodule from "./statemodule.js"
 
 Modules = {
@@ -14,7 +13,6 @@ Modules = {
     headermodule,
     overviewtablemodule,
     serversearchmodule,
-    settingsmodule,
     statemodule,
 }
 
