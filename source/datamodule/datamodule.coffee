@@ -69,7 +69,8 @@ retrieveCurrentData = (searchData) ->
         loop
             requestData = { vpn,first_name, last_name, street, city, zip, expertise_id, page, page_size }
             rawData = await postRequest(URL, requestData)
-
+            if !rawData? then break
+            
             allData.push(rawData.providers) if Array.isArray(rawData.providers)
             receivedCount += rawData.count
             
